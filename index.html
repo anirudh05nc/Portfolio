@@ -80,7 +80,7 @@
             <!-- Home Section -->
             <section id="home" class="section">
                 <div class="hero">
-                    <h1 class="hero-title animate-fade-in">Welcome to My Portfolio</h1>
+                    <h1 class="hero-title animate-fade-in">WELCOME to My Portfolio</h1>
                     <p class="hero-subtitle animate-fade-in">Building innovative solutions with modern technologies</p>
                     <div class="hero-cta animate-fade-in">
                         <a href="#projects" class="cta-btn">View My Work</a>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
             </section>
-
+            
             <!-- Projects Section -->
             <section id="projects" class="section">
                 <h2 class="section-title animate-on-scroll">Projects</h2>
@@ -152,7 +152,9 @@
                 <div class="projects-grid animate-on-scroll">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/ONT.png" alt="Project 1">
+                            <button class="project-img-btn" data-img="images/ONT.png" aria-label="View full image" style="background:none;border:none;padding:0;cursor:pointer;">
+                                <img src="images/ONT.png" alt="Project 1">
+                            </button>
                         </div>
                         <div class="project-info">
                             <h3>ONTrack - Task Manager Application</h3>
@@ -184,7 +186,9 @@
                     </div>
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/Text_analyzer.png" alt="Project 2">
+                            <button class="project-img-btn" data-img="images/Text_analyzer.png" aria-label="View full image" style="background:none;border:none;padding:0;cursor:pointer;">
+                                <img src="images/text_analyzer.png" alt="Project 2">
+                            </button>
                         </div>
                         <div class="project-info">
                             <h3>Text Sentiment Analysis</h3>
@@ -217,7 +221,9 @@
                     </div>
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="images/MovieReco.png" alt="Project 2">
+                            <button class="project-img-btn" data-img="images/MovieReco.png" aria-label="View full image" style="background:none;border:none;padding:0;cursor:pointer;">
+                                <img src="images/MovieReco.png" alt="Project 3">
+                            </button>
                         </div>
                         <div class="project-info">
                             <h3>Movie Recommendation System</h3>
@@ -274,7 +280,9 @@
                 <div class="achievements-grid animate-on-scroll">
                     <div class="achievement-card">
                         <div class="achievement-image">
-                            <img src="images/Algorithmist.jpg" alt="Hackathon Winner">
+                            <button class="achievement-img-btn" data-img="images/Algorithmist.jpg" aria-label="View full image" style="background:none;border:none;padding:0;cursor:pointer;">
+                                <img src="images/Algorithmist.jpg" alt="Hackathon Winner">
+                            </button>
                         </div>
                         <div class="achievement-content">
                             <div class="achievement-icon">🏆</div>
@@ -286,7 +294,9 @@
                     </div>
                     <div class="achievement-card">
                         <div class="achievement-image">
-                            <img src="images/0I1A8253.JPG" alt="Academic Excellence">
+                            <button class="achievement-img-btn" data-img="images/0I1A8253.JPG" aria-label="View full image" style="background:none;border:none;padding:0;cursor:pointer;">
+                                <img src="images/0I1A8253.JPG" alt="Academic Excellence">
+                            </button>
                         </div>
                         <div class="achievement-content">
                             <div class="achievement-icon">🏆</div>
@@ -297,7 +307,9 @@
                     </div>
                     <div class="achievement-card">
                         <div class="achievement-image">
-                            <img src="images/top20.jpg  " alt="Open Source Contribution">
+                            <button class="achievement-img-btn" data-img="images/top20.jpg" aria-label="View full image" style="background:none;border:none;padding:0;cursor:pointer;">
+                                <img src="images/top20.jpg" alt="Open Source Contribution">
+                            </button>
                         </div>
                         <div class="achievement-content">
                             <div class="achievement-icon">🎓</div>
@@ -378,6 +390,32 @@
         </div>
     </main>
 
+    <!-- Modal for Project/Achievement Image Preview -->
+    <div class="project-modal" id="projectModal">
+        <button class="project-modal-close" id="projectModalClose" aria-label="Close">&times;</button>
+        <img src="" alt="Full Image" class="project-modal-img" id="projectModalImg">
+    </div>
+
     <script src="main.js"></script>
+    <script>
+    // Image Modal Logic for Project and Achievement images
+    function openModalWithImg(src) {
+        const modal = document.getElementById('projectModal');
+        const modalImg = document.getElementById('projectModalImg');
+        modalImg.src = src;
+        modal.classList.add('open');
+    }
+    document.querySelectorAll('.project-img-btn, .achievement-img-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            openModalWithImg(this.getAttribute('data-img'));
+        });
+    });
+    document.getElementById('projectModalClose').onclick = function() {
+        document.getElementById('projectModal').classList.remove('open');
+    };
+    document.getElementById('projectModal').onclick = function(e) {
+        if (e.target === this) this.classList.remove('open');
+    };
+    </script>
 </body>
 </html>
